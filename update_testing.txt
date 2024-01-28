@@ -1,0 +1,64 @@
+int update(){
+    FILE *inventoryp1=fopen("inventory.csv","r+");
+    FILE *inventoryp2=fopen("inventory_copy.csv","w+");
+    int id, newqty, newprice;
+    printf("Enter the ID of the item you want to update: ");
+    scanf("%d", &id);
+    printf("Enter new quantity: ");
+    scanf("%d", &newqty);
+    printf("Enter new price: ");
+    scanf("%d", &newprice);
+    int found = 0;
+    int currentId, currentQuantity, currentPrice, currentpos=-1;
+    char currentName[50];
+    while (fscanf(inventoryp1, "%d,%49[^,],%d,%d", &currentId, currentName, &currentQuantity, &currentPrice) == 4) {
+        if (currentId == id) {
+            //fseek(inventoryp1, (currentpos+1), SEEK_SET);
+            printf("Previous Values: \n");
+            printf("%d, %s, %d, %d\n", id, currentName, currentQuantity, currentPrice);
+            printf("Updated Values: \n");
+            printf("%d, %s, %d, %d\n", currentId, currentName, newqty, newprice);
+            fprintf(inventoryp2, "%d,%s,%d,%d\n", currentId, currentName, newqty, newprice);
+            found = 1;
+            continue;
+        }
+        fprintf(inventoryp2, "%d,%s,%d,%d\n", currentId, currentName, currentQuantity, currentPrice);
+        //currentpos=ftell(inventory);
+    }
+    if(found==0){printf("Item ID not found !!!");}
+    fclose(inventory);
+    return 1;
+}
+
+
+
+int update(){
+    FILE *inventory=fopen("inventory.csv","r+");
+    int id, newqty, newprice;
+    printf("Enter the ID of the item you want to update: ");
+    scanf("%d", &id);
+    printf("Enter new quantity: ");
+    scanf("%d", &newqty);
+    printf("Enter new price: ");
+    scanf("%d", &newprice);
+    int found = 0;
+    int currentId, currentQuantity, currentPrice, currentpos=-1;
+    char currentName[50];
+    while (fscanf(inventory, "%d,%49[^,],%d,%d", &currentId, currentName, &currentQuantity, &currentPrice) == 4) {
+        if (currentId == id) {
+            fseek(inventory, (currentpos+1), SEEK_SET);
+            fprintf(inventory, "%d,%s,%d,%d", currentId, currentName, newqty, newprice);
+            printf("Previous Values: \n");
+            printf("%d, %s, %d, %d\n", id, currentName, currentQuantity, currentPrice);
+            printf("Updated Values: \n");
+            printf("%d, %s, %d, %d\n", currentId, currentName, newqty, newprice);
+            rewind(inventory);
+            found = 1;
+            break;
+        }
+        currentpos=ftell(inventory);
+    }
+    if(found==0){printf("Item ID not found !!!");}
+    fclose(inventory);
+    return 1;
+}

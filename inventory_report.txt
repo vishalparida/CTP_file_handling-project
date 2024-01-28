@@ -1,0 +1,6 @@
+A new item named Pliers, with item ID 1005, quantity 15 and price/item 200 was added on Mon Dec 04 14:42:27 2023
+The quantity of Item with Item ID 1005 was increased by 8 on Mon Dec 04 14:43:31 2023
+The price of the Item with Item ID 1005 was increased by 30 on Mon Dec 04 14:43:31 2023
+The quantity of Item with Item ID 1002 was decreased by 3 on Mon Dec 04 14:45:25 2023
+The price of the Item with Item ID 1002 was decreased by 10 on Mon Dec 04 14:45:25 2023
+The record of Pliers with Item ID 1005, quantity 23 and price/item 230 was deleted on Mon Dec 04 14:53:07 2023
